@@ -34,8 +34,7 @@ INCDIR =-I../userprog -I../threads -I../lib
 CFLAGS = -G 0  -c $(INCDIR)
 
 #all: halt shell matmult sort test1 test2 fileTest1 fileTest2
-all: fileTest1 fileTest2
-#all: halt
+all: bubble quick merge
 
 
 start.o: start.s ../userprog/syscall.h
@@ -84,4 +83,16 @@ fileTest1: fileTest1.o start.o
 fileTest2: fileTest2.o start.o
 	$(LD) $(LDFLAGS) start.o fileTest2.o -o fileTest2.coff
 	../bin/coff2noff fileTest2.coff fileTest2
+
+bubble: bubble.o start.o
+	$(LD) $(LDFLAGS) start.o bubble.o -o bubble.coff
+	../bin/coff2noff bubble.coff bubble
+
+quick: quick.o start.o
+	$(LD) $(LDFLAGS) start.o quick.o -o quick.coff
+	../bin/coff2noff quick.coff quick
+
+merge: merge.o start.o
+	$(LD) $(LDFLAGS) start.o merge.o -o merge.coff
+	../bin/coff2noff merge.coff merge
 # EDITED>

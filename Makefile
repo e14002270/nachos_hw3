@@ -4,6 +4,7 @@
 
 MAKE = make
 LPR = lpr
+export PageMaskBit = 7
 
 all: 
 	cd threads; $(MAKE) depend
@@ -12,8 +13,6 @@ all:
 	cd userprog; $(MAKE) nachos 
 	cd filesys; $(MAKE) depend
 	cd filesys; $(MAKE) nachos 
-	cd network; $(MAKE) depend
-	cd network; $(MAKE) nachos 
 	cd bin; $(MAKE) all
 	cd test; make all
 

@@ -138,7 +138,7 @@ Machine::OneInstruction(Instruction *instr)
         cout << "\t" << buf << "\n";
     }
     
-    printf("PC:0x%03x Instruction:0x%08x\n", registers[PCReg], instr->value);
+    //printf("PC:0x%03x Instruction:0x%08x\n", registers[PCReg], instr->value);
     // Compute next pc, but don't install in case there's an error or branch.
     int pcAfter = registers[NextPCReg] + 4;
     int sum, diff, tmp, value;

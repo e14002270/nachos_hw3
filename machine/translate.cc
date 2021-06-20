@@ -241,6 +241,9 @@ Machine::Translate(int virtAddr, int* physAddr, int size, bool writing)
 	DEBUG(dbgAddr, "Illegal pageframe " << pageFrame);
 	return BusErrorException;
     }
+    /* update last used tick */
+    kernel->virtualMemory->lastUsedTick[pageFrame] = kernel->stats->totalTicks;
+    kernel->virtualMemory->usedCount[pageFrame]++;
     entry->use = TRUE;		// set the use, dirty bits
     if (writing)
 	entry->dirty = TRUE;

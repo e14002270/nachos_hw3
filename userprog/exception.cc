@@ -156,6 +156,19 @@ ExceptionHandler(ExceptionType which)
  		    break;
 	    }
 	    break;
+    case PageFaultException:
+    {
+        kernel->stats->numPageFaults++;
+        kernel->virtualMemory->PageFaultHandler();
+        return;
+        break;
+    }
+    case ReadOnlyException:
+    {
+        DEBUG(dbgAddr, "ReadOnlyException! badAddr:" << hex << kernel->machine->ReadRegister(BadVAddrReg) <<"\n");
+        kernel->interrupt->Halt();
+        break;
+    }
 	default:
 	    cerr << "Unexpected user mode exception" << which << "\n";
 	    break;

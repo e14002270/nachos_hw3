@@ -16,7 +16,9 @@
 #include "filesys.h"
 #include "machine.h"
 #include "synchdisk.h"
+#include "virtualmemory.h"
 class SynchDisk;
+class VirtualMemoryManagement; /* let compiler know have a VirtualMemoryManagement class */
 class UserProgKernel : public ThreadedKernel {
   public:
     UserProgKernel(int argc, char **argv);
@@ -33,6 +35,8 @@ class UserProgKernel : public ThreadedKernel {
     Machine *machine;
     FileSystem *fileSystem;
 
+    VirtualMemoryManagement *virtualMemory;
+    char* pageReplacementAlgorithm;
 #ifdef FILESYS
     SynchDisk *synchDisk;
 #endif // FILESYS

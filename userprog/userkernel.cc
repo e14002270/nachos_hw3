@@ -42,6 +42,8 @@ UserProgKernel::UserProgKernel(int argc, char **argv)
 		cout << "For example:" << endl;
 		cout << "	./nachos -s : Print machine status during the machine is on." << endl;
 		cout << "	./nachos -e file1 -e file2 : executing file1 and file2."  << endl;
+	} else if (strcmp(argv[i++], "-pr") == 0) {
+        pageReplacementAlgorithm = argv[i];
 	}
     }
 }
@@ -58,6 +60,7 @@ UserProgKernel::Initialize()
 
     machine = new Machine(debugUserProg);
     fileSystem = new FileSystem();
+    virtualMemory = new VirtualMemoryManagement(pageReplacementAlgorithm);
 #ifdef FILESYS
     synchDisk = new SynchDisk("New SynchDisk");
 #endif // FILESYS
@@ -73,6 +76,7 @@ UserProgKernel::~UserProgKernel()
 {
     delete fileSystem;
     delete machine;
+    delete virtualMemory;
 #ifdef FILESYS
     delete synchDisk;
 #endif

@@ -87,6 +87,7 @@ THREAD_O = bitmap.o debug.o libtest.o sysdep.o interrupt.o stats.o timer.o \
 
 USERPROG_H = ../userprog/addrspace.h\
 	../userprog/userkernel.h\
+	../userprog/virtualmemory.h\
 	../userprog/syscall.h\
 	../userprog/synchconsole.h\
         ../filesys/filesys.h\
@@ -102,6 +103,7 @@ USERPROG_C = ../userprog/addrspace.cc\
         ../userprog/exception.cc\
 	../userprog/synchconsole.cc\
 	../userprog/userkernel.cc\
+	../userprog/virtualmemory.cc\
         ../machine/console.cc\
         ../machine/machine.cc\
         ../machine/mipssim.cc\
@@ -110,7 +112,7 @@ USERPROG_C = ../userprog/addrspace.cc\
 	../machine/disk.cc
 
 USERPROG_O = addrspace.o exception.o synchconsole.o console.o machine.o \
-        mipssim.o translate.o userkernel.o synchdisk.o disk.o
+        mipssim.o translate.o userkernel.o synchdisk.o disk.o virtualmemory.o
 
 FILESYS_H = ../filesys/directory.h\
         ../filesys/filehdr.h\

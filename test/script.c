@@ -15,6 +15,8 @@ SECTIONS
     *(.rdata)
   }
    _fdata = .;
+   _fdata_align = ((_fdata + PageSize - 1) & ~(PageSize - 1));
+   . = _fdata_align;
   .data  . : {
     *(.data)
     CONSTRUCTORS

@@ -12,6 +12,8 @@
 
 # if you are cross-compiling, you need to point to the right executables
 # and change the flags to ld and the build procedure for as
+PageSize := $(shell echo "$$(( 1 << $(PageMaskBit)))")
+DEFINES = -DPageSize=$(PageSize)
 GCCDIR = /usr/local/nachos/decstation-ultrix/bin/
 LDFLAGS = -T script -N
 ASFLAGS = -mips2
@@ -34,8 +36,10 @@ INCDIR =-I../userprog -I../threads -I../lib
 CFLAGS = -G 0  -c $(INCDIR)
 
 #all: halt shell matmult sort test1 test2 fileTest1 fileTest2
-all: bubble quick merge
+all: script bubble quick merge
 
+script:
+	$(CPP) -E -P script.c $(DEFINES) -o script
 
 start.o: start.s ../userprog/syscall.h
 	$(CPP) $(CPPFLAGS) start.s > strt.s
